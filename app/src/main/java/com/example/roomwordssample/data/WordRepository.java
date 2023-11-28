@@ -3,6 +3,7 @@ package com.example.roomwordssample.data;
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
+import androidx.room.Query;
 
 import com.example.roomwordssample.data.db.WordDao;
 import com.example.roomwordssample.data.db.WordRoomDatabase;
@@ -31,5 +32,11 @@ public class WordRepository {
     // Room garantit que vous n'effectuez aucune opération longue sur le thread principal, bloquant l'interface utilisateur.
     public void insert(Word word) {
         WordRoomDatabase.databaseWriteExecutor.execute(() -> mWordDao.insert(word));
+    }
+    public void deleteAll(){
+        WordRoomDatabase.databaseWriteExecutor.execute(() -> mWordDao.deleteAll());
+    }
+    public void deleteWord(Word word)  {
+        WordRoomDatabase.databaseWriteExecutor.execute(() -> mWordDao.deleteWord(word));
     }
 }
